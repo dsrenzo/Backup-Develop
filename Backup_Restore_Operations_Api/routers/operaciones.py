@@ -2,11 +2,11 @@
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from datetime import datetime
-from tqdm import tqdm
 import os
 import logging
 import shutil
 import time
+from tqdm import tqdm
 import psutil
 import subprocess
 import re
@@ -179,18 +179,24 @@ def crear_backup(data: BackupModel = Body(..., example={
                     )
 
                 inicio = time.time()
+                """ with open(rf"\\.\{letra_origen}", "rb") as fsrc, open(archivo_final, "wb") as fdst:
+                    shutil.copyfileobj(fsrc, fdst) """
+                
                 with open(rf"\\.\{letra_origen}", "rb") as fsrc, open(archivo_final, "wb") as fdst:
                     copied = 0
                     pbar = tqdm(total=tam_origen, unit="B", unit_scale=True, desc="Copiando")
-                    while True:
-                        buf = fsrc.read(16384)
+                    while copied < tam_origen:
+                        # leer solo lo que falta
+                        to_read = min(16384, tam_origen - copied)
+                        buf = fsrc.read(to_read)
                         if not buf:
                             break
                         fdst.write(buf)
                         copied += len(buf)
                         pbar.update(len(buf))
                     pbar.close()
-                hot_logger.info(f"Backup en caliente completado: {archivo_final} ({copied} bytes copiados)")
+                
+                hot_logger.info(f"Backup en caliente completado: {archivo_final} ({copied} bytes copiados)") 
                 duracion = round(time.time() - inicio, 2)
 
                 hash_resultado = hash_archivo(archivo_final)
@@ -231,7 +237,7 @@ def crear_backup(data: BackupModel = Body(..., example={
         logging.error(f"/backup - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
 
-@router.post("/restore")
+""" @router.post("/restore")
 def crear_restore(data: RestoreModel = Body(..., example={
     "nombre": "backup_2025_06_03",
     "destino": "C:/"
@@ -245,7 +251,7 @@ def crear_restore(data: RestoreModel = Body(..., example={
         op = {
             "tipo": "restore",
             "nombre": data.nombre,
-            "origen": "",
+            "origen": '',
             "destino": data.destino,
             "entorno": entorno,
             "fecha": datetime.now().isoformat()
@@ -255,7 +261,7 @@ def crear_restore(data: RestoreModel = Body(..., example={
     except HTTPException as e:
         logging.error(f"/restore - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
-
+ """
 @router.post("/delete")
 def crear_delete(data: DeleteModel = Body(..., example={
     "nombre": "backup_2025_06_03"
