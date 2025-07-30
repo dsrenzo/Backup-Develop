@@ -1,0 +1,34 @@
+
+--- 2025-06-12 13:39:30.433698 ---
+
+Microsoft DiskPart versi¢n 10.0.19041.3636
+
+Copyright (C) Microsoft Corporation.
+En el equipo: DESKTOP-6LQMMT8
+
+  N£m Volumen Ltr  Etiqueta     Fs     Tipo        Tama¤o   Estado     Info
+  ----------- ---  -----------  -----  ----------  -------  ---------  --------
+  Volume 0     D   ESD-ISO      UDF    DVD-ROM     4369 MB  Correcto           
+  Volume 1     C                NTFS   Partici¢n    126 GB  Correcto   Arranque
+  Volume 2                      FAT32  Partici¢n    100 MB  Correcto   Sistema 
+  Volume 3                      NTFS   Partici¢n    521 MB  Correcto   Oculto  
+
+Saliendo de DiskPart...
+
+
+--- 2025-06-12 13:41:10.346298 ---
+
+Microsoft DiskPart versi¢n 10.0.19041.3636
+
+Copyright (C) Microsoft Corporation.
+En el equipo: DESKTOP-6LQMMT8
+
+  N£m Volumen Ltr  Etiqueta     Fs     Tipo        Tama¤o   Estado     Info
+  ----------- ---  -----------  -----  ----------  -------  ---------  --------
+  Volume 0     D   ESD-ISO      UDF    DVD-ROM     4369 MB  Correcto           
+  Volume 1     C                NTFS   Partici¢n    126 GB  Correcto   Arranque
+  Volume 2                      FAT32  Partici¢n    100 MB  Correcto   Sistema 
+  Volume 3                      NTFS   Partici¢n    521 MB  Correcto   Oculto  
+
+Saliendo de DiskPart...
+
