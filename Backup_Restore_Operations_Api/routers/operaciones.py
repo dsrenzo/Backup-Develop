@@ -297,7 +297,7 @@ def crear_delete(data: DeleteModel = Body(..., example={
         logging.error(f"/delete - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
 
-@router.post("/boot")
+""" @router.post("/boot")
 def cambiar_arranque(data: BootModel = Body(..., example={
     "modo": "windows"
 })):
@@ -318,7 +318,7 @@ def cambiar_arranque(data: BootModel = Body(..., example={
     except HTTPException as e:
         logging.error(f"/boot - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
-
+ """
 """ @router.post("/shutdown")
 def apagar():
     try:

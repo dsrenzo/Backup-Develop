@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace WinPEExecutor
-{
+{   
     class Program
     {
         private const string DB_PATH = @"G:\OperacionesPendientes\operaciones.db";
@@ -61,9 +61,9 @@ namespace WinPEExecutor
                 RestaurarImagenInteractiva();
             }
 
-            //Log("[INFO] Todas las tareas han sido procesadas. Reiniciando en Windows en 10 segundos...");
-            //System.Threading.Thread.Sleep(10000);
-            //ReiniciarEnWindows();
+            Log("[INFO] Todas las tareas han sido procesadas. Reiniciando en Windows en 10 segundos...");
+            System.Threading.Thread.Sleep(10000);
+            ReiniciarEnWindows();
         }
 
         static bool VerificarEscrituraEnG()
