@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 
 namespace WinPEExecutor
-{   
+{
     class Program
     {
         private const string DB_PATH = @"G:\OperacionesPendientes\operaciones.db";
@@ -56,10 +56,16 @@ namespace WinPEExecutor
 
             Console.Write("¿Desea realizar una restauración de backup ahora? (s/n): ");
             string respuesta = Console.ReadLine()?.Trim().ToLower();
-            if (respuesta == "s")
+
+            if (!string.IsNullOrEmpty(respuesta) && respuesta.StartsWith("s"))
             {
                 RestaurarImagenInteractiva();
             }
+            else
+            {
+                Console.WriteLine("Operación cancelada.");
+            }
+
 
             Log("[INFO] Todas las tareas han sido procesadas. Reiniciando en Windows en 10 segundos...");
             System.Threading.Thread.Sleep(10000);
