@@ -203,6 +203,18 @@ def crear_backup(data: BackupModel = Body(..., example={
                 with open(archivo_final + ".hash.txt", "w") as f:
                     f.write(f"SHA256: {hash_resultado}\n")
 
+                op = {
+                    "tipo": "backup",
+                    "nombre": nombre,
+                    "origen": data.origen,
+                    "destino": destino_config,
+                    "entorno": entorno,
+                    "fecha": datetime.now().isoformat(),
+                    "nvolumenorigen": nvol_origen,
+                    "nvolumendestino": nvol_destino
+                }
+                registrar_op(op)
+        
                 return {
                     "mensaje": "Backup en caliente (.img) completado",
                     "duracion_segundos": duracion,
@@ -307,7 +319,7 @@ def cambiar_arranque(data: BootModel = Body(..., example={
         logging.error(f"/boot - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
 
-@router.post("/shutdown")
+""" @router.post("/shutdown")
 def apagar():
     try:
         entorno = detectar_entorno()
@@ -324,16 +336,16 @@ def apagar():
     except HTTPException as e:
         logging.error(f"/shutdown - {e.detail}")
         return JSONResponse(status_code=e.status_code, content={"error": e.detail})
-
+ """
 @router.get("/backups")
 def listar_backups():
     backups = obtener_ops("backup")
     return [{"nombre": b["nombre"], "fecha": b["fecha"], "estado": b["estado"], "entorno": b.get("entorno", "") } for b in backups]
 
-@router.get("/restores")
+""" @router.get("/restores")
 def listar_restores():
     return obtener_ops("restore")
-
+ """
 @router.post("/edw_power")
 def edw_power():
     try:
